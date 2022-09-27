@@ -1,6 +1,6 @@
 package by.itstep.vlad.model.logic;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CalculatorTest {
@@ -18,7 +18,7 @@ public class CalculatorTest {
 
 //        assert(утверждение) да или нет
         if (actual != expected) {
-            Assert.fail();
+            fail();
         }
 
     }
@@ -36,7 +36,7 @@ public class CalculatorTest {
 
 //        assert(утверждение) да или нет
         if (actual != expected) {
-            Assert.fail();
+            fail(); // Assert.fail , если нет импорта(import static org.junit.Assert.*;)
         }
 
     }
@@ -54,8 +54,17 @@ public class CalculatorTest {
 
 //        assert(утверждение) да или нет
         if (actual != expected) {
-            Assert.fail();
+            fail();
         }
+
+    }
+
+    @Test(timeout = 3000)
+    public void testMulPower() {
+//        arrange(подготовка)
+        int a = 9;
+        int b = 3;
+        Calculator.mul(a, b);
 
     }
 
@@ -75,9 +84,19 @@ public class CalculatorTest {
 //            Assert.fail();
 //        }
 
-        Assert.assertEquals(expected, actual); // как if, только проще
-        
+        assertEquals(expected, actual); // как if, только проще
+
 
     }
+
+    @Test(expected = ArithmeticException.class) // ArithmeticException.class - возврат результата(деление на 0)
+    public void testDivByZero() {
+//        arrange(подготовка)
+        int a = 9;
+        int b = 0;
+        Calculator.div(a, b);// фантомный метод
+
+    }
+
 
 }
